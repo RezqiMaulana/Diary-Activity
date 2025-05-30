@@ -1,58 +1,63 @@
-/* Tambahan / edit di main.css */
+/* style/main.css */
 
+* {
+  box-sizing: border-box;
+}
 body {
-  background-color: #eef2f7;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
-
-.hero h1 {
-  font-size: 2.75rem;
+.container {
+  background: white;
+  max-width: 480px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px 24px;
+  text-align: center;
+}
+h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
   color: #2563eb;
-  margin-bottom: 0;
+  margin-bottom: 6px;
 }
-.hero h1 span {
+h1 span {
   color: #16a34a;
 }
-.tagline {
+.subtitle {
+  font-style: italic;
   color: #6b7280;
-  font-style: italic;
-  margin-top: 4px;
-  font-size: 1rem;
+  margin-bottom: 24px;
 }
-
-.nav-section {
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.card {
-  background-color: #ffffff;
-  border: 2px solid #d1d5db;
-  padding: 16px;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111827;
+nav a {
   text-decoration: none;
-  transition: 0.3s;
+  color: white;
+  background-color: #2563eb;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 8px 8px;
+  display: flex;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
 }
-.card:hover {
-  background-color: #e0f2fe;
-  border-color: #60a5fa;
+nav a:hover {
+  background-color: #1d4ed8;
 }
-
-.quote {
-  margin-top: 32px;
-  font-style: italic;
-  color: #4b5563;
-  background-color: #fef9c3;
-  padding: 12px 20px;
-  border-radius: 10px;
-}
-
 footer {
-  margin-top: 40px;
+  margin-top: 32px;
   font-size: 0.875rem;
   color: #9ca3af;
 }
