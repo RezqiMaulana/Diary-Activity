@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Harian Rezqi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 font-sans p-4">
+    <div class="max-w-xl mx-auto bg-white shadow-xl rounded-xl p-6">
+      <h1 class="text-2xl font-bold mb-4 text-center">📖 Journal Harian Rezqi</h1>
+
+      <form id="journalForm" class="space-y-4">
+        <div>
+          <label class="block font-semibold">😌 Perasaan Hari Ini</label>
+          <input type="text" id="feeling" class="w-full p-2 border rounded-lg" placeholder="Contoh: bingung, senang, takut..." />
+        </div>
+
+        <div>
+          <label class="block font-semibold">🧠 Pikiran yang Muncul</label>
+          <textarea id="thought" rows="3" class="w-full p-2 border rounded-lg" placeholder="Tulis pikiran yang muncul..."></textarea>
+        </div>
+
+        <div>
+          <label class="block font-semibold">🎯 Aksi Kecil yang Kulakukan</label>
+          <input type="text" id="action" class="w-full p-2 border rounded-lg" placeholder="Contoh: buka 1 video, chat teman, nulis jurnal ini" />
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Simpan</button>
+      </form>
+
+      <div class="mt-6">
+        <h2 class="text-xl font-semibold mb-2">📝 Catatan Hari Ini</h2>
+        <ul id="journalList" class="space-y-3"></ul>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("journalForm");
+      const list = document.getElementById("journalList");
+
+      function loadEntries() {
+        const entries = JSON.parse(localStorage.getItem("journals") || "[]");
+        list.innerHTML = "";
+        entries.forEach((entry) => {
+          const li = document.createElement("li");
+          li.className = "bg-gray-200 p-3 rounded-lg";
+          li.innerHTML = `<strong>${entry.date}</strong><br>
+          😌 ${entry.feeling}<br>
+          🧠 ${entry.thought}<br>
+          🎯 ${entry.action}`;
+          list.prepend(li);
+        });
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const feeling = document.getElementById("feeling").value;
+        const thought = document.getElementById("thought").value;
+        const action = document.getElementById("action").value;
+
+        if (!feeling || !thought || !action) return alert("Isi semua kolom ya!");
+
+        const entry = {
+          date: new Date().toLocaleDateString("id-ID", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          }),
+          feeling,
+          thought,
+          action,
+        };
+
+        const entries = JSON.parse(localStorage.getItem("journals") || "[]");
+        entries.push(entry);
+        localStorage.setItem("journals", JSON.stringify(entries));
+        form.reset();
+        loadEntries();
+      });
+
+      loadEntries();
+    </script>
+  </body>
+</html>
+
